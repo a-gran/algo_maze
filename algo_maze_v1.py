@@ -1,5 +1,4 @@
 import pygame  # Импортируем библиотеку pygame для создания игры
-
 '''Необходимые классы'''  # Заголовок секции с определением классов
 
 # Базовый класс для всех спрайтов в игре
@@ -54,34 +53,32 @@ class Enemy(GameSprite):
             self.rect.x += self.speed
 
 # Класс для создания стен
-# class Wall(pygame.sprite.Sprite):
-#     def __init__(self, color_1, color_2, color_3, wall_x, wall_y, wall_width, wall_height):
-#         super().__init__()  # Вызываем конструктор родительского класса
-#         # Сохраняем параметры стены
-#         self.color_1 = color_1  # Красный компонент цвета
-#         self.color_2 = color_2  # Зеленый компонент цвета
-#         self.color_3 = color_3  # Синий компонент цвета
-        # self.width = wall_width  # Ширина стены
-        # self.height = wall_height  # Высота стены
+class Wall(pygame.sprite.Sprite):
+    def __init__(self, color_1, color_2, color_3, wall_x, wall_y, wall_width, wall_height):
+        super().__init__()  # Вызываем конструктор родительского класса
+        # Сохраняем параметры стены
+        self.color_1 = color_1  # Красный компонент цвета
+        self.color_2 = color_2  # Зеленый компонент цвета
+        self.color_3 = color_3  # Синий компонент цвета
+        self.width = wall_width  # Ширина стены
+        self.height = wall_height  # Высота стены
 
-        # # Создаем поверхность для стены и закрашиваем её
-        # self.image = pygame.Surface([self.width, self.height])
-        # self.image.fill((color_1, color_2, color_3))
+        # Создаем поверхность для стены и закрашиваем её
+        self.image = pygame.Surface([self.width, self.height])
+        self.image.fill((color_1, color_2, color_3))
 
-        # # Создаем прямоугольник для стены
-        # self.rect = self.image.get_rect()
-        # self.rect.x = wall_x  # Устанавливаем x-координату
-        # self.rect.y = wall_y  # Устанавливаем y-координату
+        # Создаем прямоугольник для стены
+        self.rect = self.image.get_rect()
+        self.rect.x = wall_x  # Устанавливаем x-координату
+        self.rect.y = wall_y  # Устанавливаем y-координату
 
     # Метод для отрисовки стены
-    # def draw_wall(self):
-    #     window.blit(self.image, (self.rect.x, self.rect.y))
-    #     # Дополнительно рисуем прямоугольник
-    #     pygame.draw.rect(window, (self.color_1, self.color_2, self.color_3),
-    #               (self.rect.x, self.rect.y, self.width, self.height))
+    def draw_wall(self):
+        window.blit(self.image, (self.rect.x, self.rect.y))
+        # Дополнительно рисуем прямоугольник
+        pygame.draw.rect(window, (self.color_1, self.color_2, self.color_3), (self.rect.x, self.rect.y, self.width, self.height))
 
-'''Описание игры'''  # Заголовок секции настроек игры
-
+'''Описание игры'''
 # Настройки окна игры
 win_width = 700  # Ширина окна
 win_height = 500  # Высота окна
@@ -91,13 +88,13 @@ pygame.display.set_caption("Лабиринт")  # Устанавливаем з�
 background = pygame.transform.scale(pygame.image.load("background.jpg"), (win_width, win_height))
 
 # Создаем стены лабиринта
-# w1 = Wall(154, 205, 50, 100, 20 , 450, 10)  # Верхняя горизонтальная стена
-# w2 = Wall(154, 205, 50, 100, 480, 350, 10)  # Нижняя горизонтальная стена
-# w3 = Wall(154, 205, 50, 100, 20 , 10, 380)  # Левая вертикальная стена
-# w4 = Wall(154, 205, 50, 200, 130, 10, 350)  # Вертикальная стена в центре
-# w5 = Wall(154, 205, 50, 450, 130, 10, 360)  # Правая вертикальная стена
-# w6 = Wall(154, 205, 50, 300, 20, 10, 350)   # Дополнительная вертикальная стена
-# w7 = Wall(154, 205, 50, 390, 120, 130, 10)  # Дополнительная горизонтальная стена
+w1 = Wall(154, 205, 50, 100, 20 , 450, 10)  # Верхняя горизонтальная стена
+w2 = Wall(154, 205, 50, 100, 480, 350, 10)  # Нижняя горизонтальная стена
+w3 = Wall(154, 205, 50, 100, 20 , 10, 380)  # Левая вертикальная стена
+w4 = Wall(154, 205, 50, 200, 130, 10, 350)  # Вертикальная стена в центре
+w5 = Wall(154, 205, 50, 450, 130, 10, 360)  # Правая вертикальная стена
+w6 = Wall(154, 205, 50, 300, 20, 10, 350)   # Дополнительная вертикальная стена
+w7 = Wall(154, 205, 50, 390, 120, 130, 10)  # Дополнительная горизонтальная стена
 
 # Создаем игровые объекты
 packman = Player('hero.png', 5, win_height - 80, 4)  # Создаем игрока
@@ -142,23 +139,23 @@ while game:
         monster.reset()  # Отрисовываем врага
         final.reset()    # Отрисовываем сокровище
         # Отрисовываем все стены
-        # w1.draw_wall()
-        # w2.draw_wall()
-        # w3.draw_wall()
-        # w4.draw_wall()
-        # w5.draw_wall()
-        # w6.draw_wall()
-        # w7.draw_wall()
+        w1.draw_wall()
+        w2.draw_wall()
+        w3.draw_wall()
+        w4.draw_wall()
+        w5.draw_wall()
+        w6.draw_wall()
+        w7.draw_wall()
         
         # Проверяем условия проигрыша (столкновение с врагом или стенами)
-        # if (pygame.sprite.collide_rect(packman, monster) or
-        #     pygame.sprite.collide_rect(packman, w1) or pygame.sprite.collide_rect(packman, w2) or
-        #     pygame.sprite.collide_rect(packman, w3) or pygame.sprite.collide_rect(packman, w4) or
-        #     pygame.sprite.collide_rect(packman, w5) or pygame.sprite.collide_rect(packman, w6) or
-        #     pygame.sprite.collide_rect(packman, w7)):
-        #     finish = True  # Завершаем игру
-        #     window.blit(lose, (200, 200))  # Выводим сообщение о проигрыше
-        #     kick.play()  # Воспроизводим звук столкновения
+        if (pygame.sprite.collide_rect(packman, monster) or
+            pygame.sprite.collide_rect(packman, w1) or pygame.sprite.collide_rect(packman, w2) or
+            pygame.sprite.collide_rect(packman, w3) or pygame.sprite.collide_rect(packman, w4) or
+            pygame.sprite.collide_rect(packman, w5) or pygame.sprite.collide_rect(packman, w6) or
+            pygame.sprite.collide_rect(packman, w7)):
+            finish = True  # Завершаем игру
+            window.blit(lose, (200, 200))  # Выводим сообщение о проигрыше
+            kick.play()  # Воспроизводим звук столкновения
             
         # Проверяем условие победы (достижение сокровища)
         if pygame.sprite.collide_rect(packman, final):

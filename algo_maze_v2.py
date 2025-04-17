@@ -199,7 +199,7 @@ money = pygame.mixer.Sound('money.ogg')  # Загружаем звук побе�
 pygame.mixer.music.play(-1)  # Запускаем фоновую музыку в бесконечном цикле
 
 # Создаем шрифт и текстовые сообщения
-font = pygame.font.Font(None, 70)  # Шрифт размером 70
+font = pygame.font.SysFont('Arial', 70)  # Шрифт размером 70
 win_text = font.render('YOU WIN!', True, WIN)  # Текст победы
 lose_text = font.render('YOU LOSE!', True, LOSE)  # Текст поражения
 
